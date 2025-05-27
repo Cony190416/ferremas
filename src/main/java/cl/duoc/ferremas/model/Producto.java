@@ -1,6 +1,7 @@
 package cl.duoc.ferremas.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
 @Entity
@@ -8,13 +9,13 @@ public class Producto {
 
     @Id
     private String codigo; // ejemplo: "FER-12345"
-
     private String nombre;
     private String marca;
     private String categoria;
     private int stock;
 
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    @JsonManagedReference  // ← LÍNEA AGREGADA
     private List<Precio> precios;
 
     // Getters y setters

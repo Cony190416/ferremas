@@ -1,6 +1,7 @@
 package cl.duoc.ferremas.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,6 +16,7 @@ public class Precio {
 
     @ManyToOne
     @JoinColumn(name = "producto_codigo")
+    @JsonBackReference  // ← LÍNEA AGREGADA
     private Producto producto;
 
     // Getters y setters
