@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = "*") // Permite llamadas desde cualquier origen
+@CrossOrigin(origins = "*")
 public class ProductoController {
 
     private final ProductoService productoService;
@@ -24,13 +24,11 @@ public class ProductoController {
         this.precioService = precioService;
     }
 
-    // Obtener todos los productos
     @GetMapping
     public ResponseEntity<List<Producto>> obtenerTodos() {
         return ResponseEntity.ok(productoService.obtenerTodos());
     }
 
-    // Buscar producto por código
     @GetMapping("/{codigo}")
     public ResponseEntity<?> obtenerPorCodigo(@PathVariable String codigo) {
         Optional<Producto> productoOpt = productoService.obtenerPorCodigo(codigo);
@@ -42,25 +40,21 @@ public class ProductoController {
         }
     }
 
-    // Buscar productos por nombre
     @GetMapping("/buscar")
     public ResponseEntity<List<Producto>> buscarPorNombre(@RequestParam String nombre) {
         return ResponseEntity.ok(productoService.buscarPorNombre(nombre));
     }
 
-    // Buscar productos por categoría
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<Producto>> buscarPorCategoria(@PathVariable String categoria) {
         return ResponseEntity.ok(productoService.buscarPorCategoria(categoria));
     }
 
-    // Buscar productos con stock bajo
     @GetMapping("/stock")
     public ResponseEntity<List<Producto>> buscarPorStockBajo(@RequestParam int limite) {
         return ResponseEntity.ok(productoService.buscarPorStockMenorA(limite));
     }
 
-    // Obtener historial de precios de un producto
     @GetMapping("/{codigo}/precios")
     public ResponseEntity<?> obtenerHistorialPrecios(@PathVariable String codigo) {
         Optional<Producto> producto = productoService.obtenerPorCodigo(codigo);
@@ -72,7 +66,6 @@ public class ProductoController {
         return ResponseEntity.ok(precios);
     }
 
-    // Crear nuevo producto
     @PostMapping
     public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
         try {
@@ -88,7 +81,6 @@ public class ProductoController {
         }
     }
 
-    // Actualizar producto existente
     @PutMapping("/{codigo}")
     public ResponseEntity<?> actualizarProducto(@PathVariable String codigo, @RequestBody Producto producto) {
         Optional<Producto> productoExistente = productoService.obtenerPorCodigo(codigo);
@@ -97,12 +89,11 @@ public class ProductoController {
                     .body("Producto con código '" + codigo + "' no encontrado");
         }
 
-        producto.setCodigo(codigo); // Asegura que el código no cambie
+        producto.setCodigo(codigo);
         Producto actualizado = productoService.guardarProducto(producto);
         return ResponseEntity.ok(actualizado);
     }
 
-    // Eliminar producto por código
     @DeleteMapping("/{codigo}")
     public ResponseEntity<?> eliminarProducto(@PathVariable String codigo) {
         Optional<Producto> productoExistente = productoService.obtenerPorCodigo(codigo);
@@ -114,7 +105,6 @@ public class ProductoController {
         return ResponseEntity.noContent().build();
     }
 
-    // Actualizar solo el stock de un producto
     @PatchMapping("/{codigo}/stock")
     public ResponseEntity<?> actualizarStock(@PathVariable String codigo, @RequestBody int nuevoStock) {
         Optional<Producto> productoActualizado = productoService.actualizarStock(codigo, nuevoStock);
@@ -125,7 +115,6 @@ public class ProductoController {
         return ResponseEntity.ok(productoActualizado.get());
     }
 
-    // Agregar nuevo precio a un producto
     @PostMapping("/{codigo}/precios")
     public ResponseEntity<?> agregarPrecio(@PathVariable String codigo, @RequestBody Precio precio) {
         Optional<Producto> producto = productoService.obtenerPorCodigo(codigo);

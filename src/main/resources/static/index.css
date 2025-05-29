@@ -1,0 +1,133 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* Encabezado */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  color: #2c3e50;
+  letter-spacing: 1px;
+}
+
+/* Grid de productos */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjeta individual */
+.product-card {
+  background-color: #00a9a7;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.product-card h2 {
+  font-size: 1.1rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.product-card p {
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+
+.product-card strong {
+  color: #000000;
+}
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Botón de acción */
+button {
+  display: inline-block;
+  margin-top: 10px;
+  background-color: #148505;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1e8449;
+}
+
+/* Pie de página */
+footer {
+  text-align: center;
+  margin-top: 50px;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.buscador {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#buscar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+#buscar:focus {
+  border-color: #27ae60;
+}
+
+/* Estilo de la franja negra superior */
+.barra-superior {
+  background-color: #000;
+  width: 100%;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.barra-superior h2 {
+  color: #f1c40f;
+  font-size: 4rem; /* aún más grande */
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 4px;
+}
