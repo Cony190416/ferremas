@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "23a6622a-67fd-49f1-b813-9d48354d208a",
+		"name": "FERREMAS-DOLAR",
+		"description": "Colección de pruebas para la API de conversión de divisas de Ferremas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40476357"
+	},
+	"item": [
+		{
+			"name": "Obtener valor del dólar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/divisa/dolar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"divisa",
+						"dolar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Convertir pesos a dólares",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/divisa/convertir?amount=10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"divisa",
+						"convertir"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "10000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Convertir dólares a pesos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/divisa/convertir-inverso?amount=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"divisa",
+						"convertir-inverso"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

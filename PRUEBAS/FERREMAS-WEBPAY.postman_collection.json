@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "09269b6f-c0e5-49fd-8da7-99e4f2c3d7d8",
+		"name": "FERREMAS-WEBPAY",
+		"description": "Colección para pruebas de integración con Webpay Plus en entorno de desarrollo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40476357"
+	},
+	"item": [
+		{
+			"name": "Iniciar Pago",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/pago/iniciar?monto=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pago",
+						"iniciar"
+					],
+					"query": [
+						{
+							"key": "monto",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Confirmar Pago",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/pago/confirmar?token_ws={{token_ws}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pago",
+						"confirmar"
+					],
+					"query": [
+						{
+							"key": "token_ws",
+							"value": "{{token_ws}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token_ws",
+			"value": ""
+		}
+	]
+}

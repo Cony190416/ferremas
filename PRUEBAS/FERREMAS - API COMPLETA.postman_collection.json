@@ -1,0 +1,875 @@
+{
+	"info": {
+		"_postman_id": "f0984781-deeb-420d-981f-89d12efffaa5",
+		"name": "FERREMAS - API COMPLETA",
+		"description": "Colección completa de pruebas para la API de FERREMAS - Configurada para localhost:8080\n\n**Configuración:**\n- Base URL: http://localhost:8080/api\n- Puerto: 8080 (según logs de Spring Boot)\n- Incluye CRUD completo y manejo de errores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40476357"
+	},
+	"item": [
+		{
+			"name": "📦 PRODUCTOS - CONSULTAS",
+			"item": [
+				{
+					"name": "1. Obtener todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos"
+							]
+						},
+						"description": "Obtiene la lista completa de productos disponibles"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Buscar producto por código",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/FER-010",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"FER-010"
+							]
+						},
+						"description": "Busca un producto específico por su código (ejemplo: Taladro Percutor Bosch)"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Buscar producto por código - No encontrado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/XXX-999",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"XXX-999"
+							]
+						},
+						"description": "Prueba con un código que no existe para verificar manejo de errores (debería retornar 404)"
+					},
+					"response": []
+				},
+				{
+					"name": "4. Buscar productos por nombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/buscar?nombre=taladro",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "taladro"
+								}
+							]
+						},
+						"description": "Busca productos que contengan 'taladro' en el nombre"
+					},
+					"response": []
+				},
+				{
+					"name": "5. Buscar productos por nombre parcial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/buscar?nombre=mart",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"buscar"
+							],
+							"query": [
+								{
+									"key": "nombre",
+									"value": "mart"
+								}
+							]
+						},
+						"description": "Busca productos que contengan 'mart' (debería encontrar martillos)"
+					},
+					"response": []
+				},
+				{
+					"name": "6. Buscar productos por categoría - Herramientas Eléctricas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/categoria/Herramientas Eléctricas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"categoria",
+								"Herramientas Eléctricas"
+							]
+						},
+						"description": "Obtiene todos los productos de la categoría Herramientas Eléctricas"
+					},
+					"response": []
+				},
+				{
+					"name": "8. Buscar productos con stock bajo (5 unidades)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/stock?limite=5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"stock"
+							],
+							"query": [
+								{
+									"key": "limite",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Encuentra productos con stock menor a 5 unidades"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para consultar productos existentes"
+		},
+		{
+			"name": "➕ PRODUCTOS - CREAR",
+			"item": [
+				{
+					"name": "1. Crear nuevo producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"TEST-001\",\n  \"nombre\": \"Producto de Prueba\",\n  \"marca\": \"Marca Test\",\n  \"categoria\": \"Herramientas Manuales\",\n  \"stock\": 15\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos"
+							]
+						},
+						"description": "Crea un nuevo producto de prueba con todos los campos requeridos"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Crear producto duplicado (Error 409)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"FER-001\",\n  \"nombre\": \"Producto Duplicado\",\n  \"marca\": \"Marca Test\",\n  \"categoria\": \"Test\",\n  \"stock\": 10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos"
+							]
+						},
+						"description": "Intenta crear un producto con código existente (debería dar error 409 Conflict)"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Crear producto con datos incompletos (Error 400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigo\": \"TEST-002\",\n  \"nombre\": \"\",\n  \"categoria\": \"Test\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos"
+							]
+						},
+						"description": "Intenta crear un producto con datos faltantes o inválidos (debería dar error 400)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para crear nuevos productos"
+		},
+		{
+			"name": "✏️ PRODUCTOS - ACTUALIZAR",
+			"item": [
+				{
+					"name": "1. Actualizar producto completo (PUT)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Producto Actualizado Completo\",\n  \"marca\": \"Nueva Marca\",\n  \"categoria\": \"Nueva Categoría\",\n  \"stock\": 25\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos/TEST-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"TEST-001"
+							]
+						},
+						"description": "Actualiza completamente un producto existente (reemplaza todos los campos)"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Actualizar producto inexistente (PUT Error 404)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Producto No Existe\",\n  \"marca\": \"Marca Test\",\n  \"categoria\": \"Test\",\n  \"stock\": 10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos/NO-EXISTE",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"NO-EXISTE"
+							]
+						},
+						"description": "Intenta actualizar un producto que no existe (debería dar error 404)"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Actualizar solo stock (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "50"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos/FER-001/stock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"FER-001",
+								"stock"
+							]
+						},
+						"description": "Actualiza únicamente el stock de un producto específico"
+					},
+					"response": []
+				},
+				{
+					"name": "4. Actualizar stock - producto inexistente (PATCH Error 404)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "100"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos/XXX-999/stock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"XXX-999",
+								"stock"
+							]
+						},
+						"description": "Intenta actualizar stock de un producto inexistente (debería dar error 404)"
+					},
+					"response": []
+				},
+				{
+					"name": "5. Actualizar stock con valor negativo (PATCH)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "-5"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos/FER-002/stock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"FER-002",
+								"stock"
+							]
+						},
+						"description": "Prueba actualizar stock con valor negativo (para verificar validación)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para actualizar productos existentes"
+		},
+		{
+			"name": "🗑️ PRODUCTOS - ELIMINAR",
+			"item": [
+				{
+					"name": "1. Eliminar producto existente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/TEST-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"TEST-001"
+							]
+						},
+						"description": "Elimina un producto existente (debería devolver 204 No Content)"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Eliminar producto inexistente (Error 404)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/NO-EXISTE",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"NO-EXISTE"
+							]
+						},
+						"description": "Intenta eliminar un producto que no existe (debería dar error 404)"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Verificar producto eliminado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/TEST-001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"TEST-001"
+							]
+						},
+						"description": "Verifica que el producto eliminado ya no existe (debería dar 404)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para eliminar productos"
+		},
+		{
+			"name": "💰 PRECIOS",
+			"item": [
+				{
+					"name": "1. Historial de precios - Taladro Bosch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/FER-010/precios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"FER-010",
+								"precios"
+							]
+						},
+						"description": "Obtiene el historial completo de precios del Taladro Percutor Bosch"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Historial de precios - Cemento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/MAT-001/precios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"MAT-001",
+								"precios"
+							]
+						},
+						"description": "Obtiene el historial de precios del cemento (tiene muchos cambios de precio)"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Historial de precios - Producto inexistente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productos/XXX-999/precios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"XXX-999",
+								"precios"
+							]
+						},
+						"description": "Prueba con un producto que no existe (debería dar error 404)"
+					},
+					"response": []
+				},
+				{
+					"name": "4. Agregar nuevo precio",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fecha\": \"2024-12-01T10:00:00\",\n  \"valor\": 16990.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos/FER-001/precios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"FER-001",
+								"precios"
+							]
+						},
+						"description": "Agrega un nuevo precio al martillo de carpintero"
+					},
+					"response": []
+				},
+				{
+					"name": "5. Agregar precio a producto inexistente (Error 404)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fecha\": \"2024-12-01T10:00:00\",\n  \"valor\": 1000.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/productos/NO-EXISTE/precios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productos",
+								"NO-EXISTE",
+								"precios"
+							]
+						},
+						"description": "Intenta agregar precio a un producto inexistente (debería dar error 404)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestionar precios de productos"
+		},
+		{
+			"name": "📧 CONTACTO",
+			"item": [
+				{
+					"name": "1. Obtener todos los mensajes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/contacto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacto"
+							]
+						},
+						"description": "Obtiene todos los mensajes de contacto recibidos"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Enviar mensaje de contacto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Cliente Postman\",\n  \"correo\": \"cliente@postman.com\",\n  \"mensaje\": \"Este es un mensaje de prueba enviado desde Postman para verificar el funcionamiento de la API.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/contacto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacto"
+							]
+						},
+						"description": "Envía un nuevo mensaje de contacto con todos los campos requeridos"
+					},
+					"response": []
+				},
+				{
+					"name": "3. Enviar mensaje sin nombre (Error 400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"correo\": \"test@error.com\",\n  \"mensaje\": \"Mensaje sin nombre\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/contacto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacto"
+							]
+						},
+						"description": "Prueba validación: mensaje sin nombre (debería dar error 400)"
+					},
+					"response": []
+				},
+				{
+					"name": "4. Enviar mensaje con correo inválido (Error 400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Test Usuario\",\n  \"correo\": \"correo-invalido\",\n  \"mensaje\": \"Mensaje con correo inválido\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/contacto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"contacto"
+							]
+						},
+						"description": "Prueba validación: correo sin @ (debería dar error 400)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para gestionar mensajes de contacto"
+		},
+		{
+			"name": "🔄 FLUJOS DE PRUEBA COMPLETOS",
+			"item": [
+				{
+					"name": "FLUJO 1: Crear → Consultar → Actualizar → Eliminar",
+					"item": [
+						{
+							"name": "1. Crear producto para flujo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"codigo\": \"FLUJO-001\",\n  \"nombre\": \"Producto Flujo Test\",\n  \"marca\": \"TestMarca\",\n  \"categoria\": \"Test\",\n  \"stock\": 20\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/productos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos"
+									]
+								},
+								"description": "Paso 1: Crear producto para el flujo completo"
+							},
+							"response": []
+						},
+						{
+							"name": "2. Verificar producto creado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productos/FLUJO-001",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"FLUJO-001"
+									]
+								},
+								"description": "Paso 2: Verificar que el producto se creó correctamente"
+							},
+							"response": []
+						},
+						{
+							"name": "3. Actualizar stock del producto",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "35"
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/FLUJO-001/stock",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"FLUJO-001",
+										"stock"
+									]
+								},
+								"description": "Paso 3: Actualizar solo el stock del producto"
+							},
+							"response": []
+						},
+						{
+							"name": "4. Actualizar producto completo",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"nombre\": \"Producto Flujo Actualizado\",\n  \"marca\": \"MarcaActualizada\",\n  \"categoria\": \"Categoría Nueva\",\n  \"stock\": 40\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/FLUJO-001",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"FLUJO-001"
+									]
+								},
+								"description": "Paso 4: Actualizar completamente el producto"
+							},
+							"response": []
+						},
+						{
+							"name": "5. Verificar actualización",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productos/FLUJO-001",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"FLUJO-001"
+									]
+								},
+								"description": "Paso 5: Verificar que las actualizaciones se aplicaron correctamente"
+							},
+							"response": []
+						},
+						{
+							"name": "6. Eliminar producto",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productos/FLUJO-001",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"FLUJO-001"
+									]
+								},
+								"description": "Paso 6: Eliminar el producto del sistema"
+							},
+							"response": []
+						},
+						{
+							"name": "7. Verificar eliminación",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productos/FLUJO-001",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"FLUJO-001"
+									]
+								},
+								"description": "Paso 7: Verificar que el producto fue eliminado (debería dar 404)"
+							},
+							"response": []
+						}
+					],
+					"description": "Flujo completo de prueba que cubre todas las operaciones CRUD"
+				}
+			],
+			"description": "Flujos de prueba que combinan múltiples operaciones"
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		}
+	]
+}
