@@ -9,12 +9,24 @@ import java.util.List;
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, String> {
 
-    // Buscar por nombre completo o parcial (ignora mayúsculas)
+    /**
+     * Busca productos cuyo nombre contenga una cadena dada, sin distinguir entre mayúsculas y minúsculas.
+     * @param nombre Parte del nombre a buscar
+     * @return Lista de productos coincidentes
+     */
     List<Producto> findByNombreContainingIgnoreCase(String nombre);
 
-    // Buscar por categoría
+    /**
+     * Busca todos los productos que pertenezcan a una categoría específica.
+     * @param categoria Nombre de la categoría
+     * @return Lista de productos en la categoría
+     */
     List<Producto> findByCategoria(String categoria);
 
-    // Buscar por stock menor a cierto valor
+    /**
+     * Busca productos con stock menor al valor proporcionado.
+     * @param stock Límite inferior de stock
+     * @return Lista de productos con bajo stock
+     */
     List<Producto> findByStockLessThan(int stock);
 }

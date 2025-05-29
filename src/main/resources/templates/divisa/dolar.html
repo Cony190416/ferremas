@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Valor del Dólar - FERREMAS</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f4f8; color: #333; }
+        header { background-color: #000000; color: #f1c40f; padding: 10px; }
+        main { padding: 20px; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>[[${nombreTienda}]]</h1>
+</header>
+<main>
+    <h2>Valor actual del dólar en pesos chilenos (CLP)</h2>
+    <p th:text="'$ ' + ${valorDolar} + ' CLP'">Cargando valor dólar...</p>
+</main>
+</body>
+</html>

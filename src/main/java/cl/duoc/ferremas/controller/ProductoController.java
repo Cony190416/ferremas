@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = "*") // Para permitir llamadas desde frontend
+@CrossOrigin(origins = "*") // Permite llamadas desde cualquier origen
 public class ProductoController {
 
     private final ProductoService productoService;
@@ -24,69 +24,62 @@ public class ProductoController {
         this.precioService = precioService;
     }
 
-    // GET /api/productos - Obtener todos los productos
+    // Obtener todos los productos
     @GetMapping
     public ResponseEntity<List<Producto>> obtenerTodos() {
-        List<Producto> productos = productoService.obtenerTodos();
-        return ResponseEntity.ok(productos);
+        return ResponseEntity.ok(productoService.obtenerTodos());
     }
 
-    // GET /api/productos/{codigo} - Buscar producto por código
+    // Buscar producto por código
     @GetMapping("/{codigo}")
     public ResponseEntity<?> obtenerPorCodigo(@PathVariable String codigo) {
-        Optional<Producto> producto = productoService.obtenerPorCodigo(codigo);
-        if (producto.isPresent()) {
-            return ResponseEntity.ok(producto.get());
+        Optional<Producto> productoOpt = productoService.obtenerPorCodigo(codigo);
+        if (productoOpt.isPresent()) {
+            return ResponseEntity.ok(productoOpt.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Producto con código '" + codigo + "' no encontrado");
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body("Producto con código " + codigo + " no encontrado");
     }
 
-    // GET /api/productos/buscar?nombre=xxx - Buscar por nombre
+    // Buscar productos por nombre
     @GetMapping("/buscar")
     public ResponseEntity<List<Producto>> buscarPorNombre(@RequestParam String nombre) {
-        List<Producto> productos = productoService.buscarPorNombre(nombre);
-        return ResponseEntity.ok(productos);
+        return ResponseEntity.ok(productoService.buscarPorNombre(nombre));
     }
 
-    // GET /api/productos/categoria/{categoria} - Buscar por categoría
+    // Buscar productos por categoría
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<Producto>> buscarPorCategoria(@PathVariable String categoria) {
-        List<Producto> productos = productoService.buscarPorCategoria(categoria);
-        return ResponseEntity.ok(productos);
+        return ResponseEntity.ok(productoService.buscarPorCategoria(categoria));
     }
 
-    // GET /api/productos/stock?limite=xxx - Buscar productos con stock bajo
+    // Buscar productos con stock bajo
     @GetMapping("/stock")
     public ResponseEntity<List<Producto>> buscarPorStockBajo(@RequestParam int limite) {
-        List<Producto> productos = productoService.buscarPorStockMenorA(limite);
-        return ResponseEntity.ok(productos);
+        return ResponseEntity.ok(productoService.buscarPorStockMenorA(limite));
     }
 
-    // GET /api/productos/{codigo}/precios - Historial de precios de un producto
+    // Obtener historial de precios de un producto
     @GetMapping("/{codigo}/precios")
     public ResponseEntity<?> obtenerHistorialPrecios(@PathVariable String codigo) {
-        // Verificar que el producto existe
         Optional<Producto> producto = productoService.obtenerPorCodigo(codigo);
-        if (!producto.isPresent()) {
+        if (producto.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Producto con código " + codigo + " no encontrado");
+                    .body("Producto con código '" + codigo + "' no encontrado");
         }
-        
         List<Precio> precios = precioService.obtenerPreciosPorCodigoProducto(codigo);
         return ResponseEntity.ok(precios);
     }
 
-    // POST /api/productos - Crear nuevo producto
+    // Crear nuevo producto
     @PostMapping
     public ResponseEntity<?> crearProducto(@RequestBody Producto producto) {
         try {
-            // Validar que el código no exista
             if (productoService.obtenerPorCodigo(producto.getCodigo()).isPresent()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body("Ya existe un producto con el código: " + producto.getCodigo());
+                        .body("Ya existe un producto con el código '" + producto.getCodigo() + "'");
             }
-            
             Producto nuevoProducto = productoService.guardarProducto(producto);
             return ResponseEntity.status(HttpStatus.CREATED).body(nuevoProducto);
         } catch (Exception e) {
@@ -95,29 +88,52 @@ public class ProductoController {
         }
     }
 
-    // PUT /api/productos/{codigo} - Actualizar producto existente
+    // Actualizar producto existente
     @PutMapping("/{codigo}")
     public ResponseEntity<?> actualizarProducto(@PathVariable String codigo, @RequestBody Producto producto) {
         Optional<Producto> productoExistente = productoService.obtenerPorCodigo(codigo);
-        if (!productoExistente.isPresent()) {
+        if (productoExistente.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Producto con código " + codigo + " no encontrado");
+                    .body("Producto con código '" + codigo + "' no encontrado");
         }
-        
-        producto.setCodigo(codigo); // Asegurar que el código coincida
-        Producto productoActualizado = productoService.guardarProducto(producto);
-        return ResponseEntity.ok(productoActualizado);
+
+        producto.setCodigo(codigo); // Asegura que el código no cambie
+        Producto actualizado = productoService.guardarProducto(producto);
+        return ResponseEntity.ok(actualizado);
     }
 
-    // POST /api/productos/{codigo}/precios - Agregar nuevo precio a un producto
+    // Eliminar producto por código
+    @DeleteMapping("/{codigo}")
+    public ResponseEntity<?> eliminarProducto(@PathVariable String codigo) {
+        Optional<Producto> productoExistente = productoService.obtenerPorCodigo(codigo);
+        if (productoExistente.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Producto con código '" + codigo + "' no encontrado");
+        }
+        productoService.eliminarProducto(codigo);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Actualizar solo el stock de un producto
+    @PatchMapping("/{codigo}/stock")
+    public ResponseEntity<?> actualizarStock(@PathVariable String codigo, @RequestBody int nuevoStock) {
+        Optional<Producto> productoActualizado = productoService.actualizarStock(codigo, nuevoStock);
+        if (productoActualizado.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Producto con código '" + codigo + "' no encontrado");
+        }
+        return ResponseEntity.ok(productoActualizado.get());
+    }
+
+    // Agregar nuevo precio a un producto
     @PostMapping("/{codigo}/precios")
     public ResponseEntity<?> agregarPrecio(@PathVariable String codigo, @RequestBody Precio precio) {
         Optional<Producto> producto = productoService.obtenerPorCodigo(codigo);
-        if (!producto.isPresent()) {
+        if (producto.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Producto con código " + codigo + " no encontrado");
+                    .body("Producto con código '" + codigo + "' no encontrado");
         }
-        
+
         precio.setProducto(producto.get());
         Precio nuevoPrecio = precioService.guardarPrecio(precio);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoPrecio);

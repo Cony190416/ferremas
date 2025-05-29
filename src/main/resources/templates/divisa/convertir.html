@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Convertir Pesos a Dólares - FERREMAS</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f4f8; color: #333; }
+        header { background-color: #000000; color: #f1c40f; padding: 10px; }
+        main { padding: 20px; }
+        label, input { font-size: 1rem; }
+        button { padding: 5px 10px; background-color: #000000; color: #f1c40f; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>[[${nombreTienda}]]</h1>
+</header>
+<main>
+    <h2>Convertir Pesos Chilenos (CLP) a Dólares (USD)</h2>
+
+    <form method="get" th:action="@{/divisa/convertir}">
+        <label for="amount">Monto en CLP:</label>
+        <input type="number" step="0.1" id="amount" name="amount" required />
+        <button type="submit">Convertir</button>
+    </form>
+
+    <div th:if="${resultadoConversion != null}">
+        <p th:text="'Monto original: $' + ${montoOriginal} + ' CLP'"></p>
+        <p th:text="'Equivale a: US$ ' + ${resultadoConversion}"></p>
+    </div>
+</main>
+</body>
+</html>
