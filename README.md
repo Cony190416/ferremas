@@ -72,9 +72,17 @@ mvn spring-boot:run
 ```
 
 ---
+desde que se corre el proyecto funcionan los siguientes localhost en el buscador directamente si necesidad de postman:
+http://localhost:8080/
+http://localhost:8080/divisa/convertir?amount=1000 html
+http://localhost:8080/api/divisa/convertir?amount=1000 
+http://localhost:8080/divisa/dolar html
+http://localhost:8080/api/divisa/dolar
+http://localhost:8080/api/divisa/convertir-inverso?amount=150
+http://localhost:8080/divisa/convertir-inverso?amount=150 html
 
 ## 📬 Endpoints disponibles
-
+Se recomienda utilizar postman para revisar los crud dadi que en swangger no esta tan clarificado.
 La API está documentada automáticamente con **Swagger**.
 
 📌 Accede desde:  
