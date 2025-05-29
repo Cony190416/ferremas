@@ -112,7 +112,39 @@ Revisar el archivo `pom.xml` para ver las dependencias detalladas, incluyendo:
 - `springdoc-openapi-starter-webmvc-ui`
 
 ---
+## 🧪 Pruebas en Postman
 
+La carpeta [`PRUEBAS`](./PRUEBAS) contiene las pruebas realizadas en Postman para todos los endpoints desarrollados.
+
+### 👉 ¿Cómo usarlas?
+
+1. Abre Postman.
+2. Haz clic en `Import` (Importar).
+3. Selecciona los archivos `.json` que están dentro de la carpeta `PRUEBAS`.
+4. Postman cargará automáticamente todas las colecciones.
+
+📦 Endpoints principales (Puerto 8080)
+
+Funcionalidad	Método	Endpoint
+Listar productos	GET	http://localhost:8080/api/productos
+Buscar por código	GET	http://localhost:8080/api/productos/{codigo}
+Buscar por nombre	GET	http://localhost:8080/api/productos/buscar?nombre=XXX
+Stock bajo	GET	http://localhost:8080/api/productos/stock?limite=30
+Crear producto	POST	http://localhost:8080/api/productos
+Eliminar producto	DELETE	http://localhost:8080/api/productos/{codigo}
+Agregar precio	POST	http://localhost:8080/api/productos/{codigo}/precios
+
+🟡 Dólar
+Función	Endpoint
+Obtener valor actual del dólar	http://localhost:8080/api/divisa/dolar
+Convertir pesos a dólares	http://localhost:8080/api/divisa/convertir?amount=10000
+Convertir dólares a pesos	http://localhost:8080/api/divisa/convertir-inverso?amount=100
+
+🟢 Webpay (Entorno de pruebas)
+Función	Endpoint
+Iniciar pago	http://localhost:8080/api/pago/iniciar?monto=1000
+Confirmar pago	http://localhost:8080/api/pago/confirmar?token_ws={{token_ws}}
+debe utilizar el token generado automaticamente en iniciar pago y levantar el servidor personalizado
 ## 🧠 Autores
 
 - 👩‍💻 Constanza Mena Aldana  
