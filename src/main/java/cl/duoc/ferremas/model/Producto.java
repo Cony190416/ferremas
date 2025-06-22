@@ -4,21 +4,23 @@ import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
-@Entity
+@Entity  // Marca esta clase como entidad JPA (tabla en base de datos)
 public class Producto {
 
-    @Id
-    private String codigo; // ejemplo: "FER-12345"
-    private String nombre;
-    private String marca;
-    private String categoria;
-    private int stock;
+    @Id  // Clave primaria, aquí es un String (ejemplo: "FER-12345")
+    private String codigo; // Código único del producto
 
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
-    @JsonManagedReference  // ← LÍNEA AGREGADA
-    private List<Precio> precios;
+    private String nombre;  // Nombre del producto
+    private String marca;   // Marca del producto
+    private String categoria; // Categoría del producto
+    private int stock;      // Cantidad disponible en inventario
 
-    // Getters y setters
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)  
+    // Relación uno a muchos: un producto puede tener varios precios
+    @JsonManagedReference  // Marca el lado "padre" para evitar referencias cíclicas en JSON
+    private List<Precio> precios;  // Lista de precios asociados a este producto
+
+    // Getters y setters para acceder y modificar los atributos
 
     public String getCodigo() {
         return codigo;

@@ -6,9 +6,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository  // Indica que esta interfaz es un componente de repositorio en Spring
 public interface PrecioRepository extends JpaRepository<Precio, Long> {
-
-    // Buscar historial de precios por código de producto
+    
+    // Método personalizado para obtener todos los precios asociados a un producto
+    // según su código. Spring genera automáticamente la consulta gracias a la convención
+    // del nombre del método (findBy + atributo anidado).
     List<Precio> findByProductoCodigo(String codigoProducto);
+    
+    // Ejemplo: si "codigoProducto" es "FER-12345", devolverá todos los precios registrados
+    // para ese producto específico.
 }

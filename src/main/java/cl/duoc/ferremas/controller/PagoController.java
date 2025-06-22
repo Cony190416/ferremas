@@ -13,19 +13,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/api/pago")
+@RequestMapping("/api/pago") // Ruta base para todas las operaciones de pago
 public class PagoController {
 
     @Autowired
-    private PagoService pagoService;
+    private PagoService pagoService; // Inyección del servicio que maneja la lógica de pagos
 
-    // POST para iniciar transacción - REST API que responde JSON
+    // Inicia una transacción de pago con el monto recibido
     @PostMapping("/iniciar")
-    @ResponseBody
+    @ResponseBody // Retorna un JSON como respuesta
     public Mono<ResponseEntity<Map<String, Object>>> iniciarPago(@RequestParam("monto") Double monto) {
         return pagoService.iniciarTransaccion(monto)
-                .map(ResponseEntity::ok)
-                .onErrorResume(e -> {
+                .map(ResponseEntity::ok) // Si es exitoso, responde con los datos de la transacción
+                .onErrorResume(e -> { // En caso de error, devuelve un mensaje con el error
                     e.printStackTrace();
                     Map<String, Object> error = new HashMap<>();
                     error.put("error", "Error al iniciar transacción: " + e.getMessage());
@@ -33,11 +33,12 @@ public class PagoController {
                 });
     }
 
-    // Acepta GET y POST desde Webpay para confirmar transacción
+    // Confirma la transacción con el token entregado por Webpay (puede ser GET o POST)
     @RequestMapping(value = "/confirmar", method = {RequestMethod.GET, RequestMethod.POST})
     public Mono<ResponseEntity<Object>> confirmarPago(@RequestParam("token_ws") String token) {
         return pagoService.confirmarTransaccion(token)
                 .map(response -> {
+                    // Redirige según el estado de la transacción
                     if ("AUTHORIZED".equals(response.get("status"))) {
                         return ResponseEntity.status(HttpStatus.FOUND)
                                 .header(HttpHeaders.LOCATION, "/api/pago/pago-exitoso")
@@ -49,6 +50,7 @@ public class PagoController {
                     }
                 })
                 .onErrorResume(e -> {
+                    // Si hay error al confirmar, redirige a vista de fallo
                     e.printStackTrace();
                     return Mono.just(ResponseEntity.status(HttpStatus.FOUND)
                             .header(HttpHeaders.LOCATION, "/api/pago/pago-fallido")
@@ -56,15 +58,15 @@ public class PagoController {
                 });
     }
 
-    // Vista de pago exitoso
+    // Devuelve la vista para mostrar cuando el pago fue exitoso
     @GetMapping("/pago-exitoso")
     public String mostrarVistaPagoExitoso() {
-        return "pago-exitoso";  // templates/pago-exitoso.html
+        return "pago-exitoso";  // Mapea a archivo HTML en templates
     }
 
-    // Vista de pago fallido
+    // Devuelve la vista para mostrar cuando el pago fue fallido
     @GetMapping("/pago-fallido")
     public String mostrarVistaPagoFallido() {
-        return "pago-fallido";  // templates/pago-fallido.html
+        return "pago-fallido";  // Mapea a archivo HTML en templates
     }
 }
