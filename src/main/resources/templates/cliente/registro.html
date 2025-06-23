@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro Cliente - Ferremas</title>
+  <link rel="stylesheet" th:href="@{/css/index.css}">
+</head>
+<body>
+  <div class="barra-superior">
+    <h2>FERREMAS</h2>
+  </div>
+
+  <header>
+    <h1>Registro de Cliente</h1>
+  </header>
+
+  <main style="max-width: 500px; margin: auto;">
+    <form method="POST" action="/api/clientes/registrar">
+      
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required><br>
+
+      <label>Email:</label>
+      <input type="email" name="email" required><br>
+
+      <label>Contraseña:</label>
+      <input type="password" name="contrasena" required><br>
+
+      <label>Dirección:</label>
+      <input type="text" name="direccion" required><br>
+
+      <button type="submit">Registrarse</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; Ferremas 2025. John and Constanza.</p>
+  </footer>
+</body>
+</html>

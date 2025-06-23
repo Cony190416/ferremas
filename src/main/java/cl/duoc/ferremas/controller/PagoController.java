@@ -65,8 +65,8 @@ public class PagoController {
     }
 
     // Devuelve la vista para mostrar cuando el pago fue fallido
-    @GetMapping("/pago-fallido")
+    @GetMapping("pago/pago-fallido")
     public String mostrarVistaPagoFallido() {
-        return "pago-fallido";  // Mapea a archivo HTML en templates
+        return "pago/pago-fallido";  // Mapea a archivo HTML en templates
     }
 }
