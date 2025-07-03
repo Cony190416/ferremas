@@ -68,6 +68,14 @@ public class SecurityConfig {
                     // Rutas pago públicas
                     "/pago/pago-exitoso",
                     "/pago/pago-fallido",
+                    "/pago-exitoso",
+                    "/pago-exitoso",
+                    
+
+                    "/api/pago/pago-exitoso",
+                    "/api/pago/pago-fallido",
+                    "api/pago/confirmar?",
+                    "api/pago/confirmar",
 
                     // APIs públicas divisa y pago
                     "/api/divisa/**",

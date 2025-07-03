@@ -1,0 +1,1929 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Plan de Prueba API Ferremas" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Grupo de Usuarios - Productos GET">
+        <intProp name="ThreadGroup.num_threads">5</intProp>
+        <intProp name="ThreadGroup.ramp_time">5</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController">
+          <stringProp name="LoopController.loops">10</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /api/productos">
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/api/productos</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="&lt;?xml version" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;1.0&quot; encoding</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;?xml version</stringProp>
+              </elementProp>
+              <elementProp name="&lt;jmeterTestPlan version" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;1.2&quot; properties</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;jmeterTestPlan version</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;TestPlan guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlanGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;TestPlan guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.comments&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.functional_mode&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.tearDown_on_shutdown&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.serialize_threadgroups&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.user_defined_variables&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;collectionProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;Arguments.arguments&quot;/&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;collectionProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.user_define_classpath&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/TestPlan&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/TestPlan&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;ThreadGroup guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroupGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;ThreadGroup guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.on_sample_error&quot;&gt;continue&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.main_controller&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;LoopController.continue_forever&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;LoopController.loops&quot;&gt;10&lt;/intProp&gt; &lt;!-- Número de repeticiones --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.num_threads&quot;&gt;5&lt;/intProp&gt; &lt;!-- Usuarios concurrentes --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.ramp_time&quot;&gt;5&lt;/intProp&gt; &lt;!-- Tiempo en segundos para subir usuarios --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;longProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.start_time&quot;&gt;1632432000000&lt;/longProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;longProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;longProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.end_time&quot;&gt;1632435600000&lt;/longProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;longProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.scheduler&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.duration&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.delay&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/ThreadGroup&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/ThreadGroup&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;HTTPSamplerProxy guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HttpTestSampleGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;HTTPSamplerProxy guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPsampler.Arguments&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;collectionProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;Arguments.arguments&quot;/&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;collectionProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.domain&quot;&gt;localhost&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.port&quot;&gt;8080&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.protocol&quot;&gt;http&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.path&quot;&gt;/api/productos&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.method&quot;&gt;GET&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.follow_redirects&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.auto_redirects&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.use_keepalive&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.DO_MULTIPART_POST&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.embedded_url_re&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.connect_timeout&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.response_timeout&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/HTTPSamplerProxy&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/HTTPSamplerProxy&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree/&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree/&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;ResultCollector guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ViewResultsFullVisualizer&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;ResultCollector guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ResultCollector.error_logging&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;objProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;objProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;name&gt;saveConfig&lt;/name&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;name&gt;saveConfig&lt;/name&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;value class" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;SampleSaveConfiguration&quot;&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;value class</stringProp>
+              </elementProp>
+              <elementProp name="&lt;time&gt;true&lt;/time&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;time&gt;true&lt;/time&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;latency&gt;true&lt;/latency&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;latency&gt;true&lt;/latency&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;timestamp&gt;true&lt;/timestamp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;timestamp&gt;true&lt;/timestamp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;success&gt;true&lt;/success&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;success&gt;true&lt;/success&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;label&gt;true&lt;/label&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;label&gt;true&lt;/label&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;code&gt;true&lt;/code&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;code&gt;true&lt;/code&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;message&gt;true&lt;/message&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;message&gt;true&lt;/message&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;threadName&gt;true&lt;/threadName&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;threadName&gt;true&lt;/threadName&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;dataType&gt;true&lt;/dataType&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;dataType&gt;true&lt;/dataType&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;encoding&gt;false&lt;/encoding&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;encoding&gt;false&lt;/encoding&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;assertions&gt;true&lt;/assertions&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;assertions&gt;true&lt;/assertions&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;subresults&gt;true&lt;/subresults&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;subresults&gt;true&lt;/subresults&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseData&gt;false&lt;/responseData&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseData&gt;false&lt;/responseData&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;samplerData&gt;false&lt;/samplerData&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;samplerData&gt;false&lt;/samplerData&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;xml&gt;false&lt;/xml&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;xml&gt;false&lt;/xml&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;fieldNames&gt;true&lt;/fieldNames&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;fieldNames&gt;true&lt;/fieldNames&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseHeaders&gt;false&lt;/responseHeaders&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseHeaders&gt;false&lt;/responseHeaders&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;requestHeaders&gt;false&lt;/requestHeaders&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;requestHeaders&gt;false&lt;/requestHeaders&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseDataOnError&gt;false&lt;/responseDataOnError&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseDataOnError&gt;false&lt;/responseDataOnError&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;saveAssertionResultsFailureMessage&gt;true&lt;/saveAssertionResultsFailureMessage&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;saveAssertionResultsFailureMessage&gt;true&lt;/saveAssertionResultsFailureMessage&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;assertionsResultsToSave&gt;0&lt;/assertionsResultsToSave&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;assertionsResultsToSave&gt;0&lt;/assertionsResultsToSave&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;bytes&gt;true&lt;/bytes&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;bytes&gt;true&lt;/bytes&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;sentBytes&gt;true&lt;/sentBytes&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;sentBytes&gt;true&lt;/sentBytes&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;url&gt;true&lt;/url&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;url&gt;true&lt;/url&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;threadCounts&gt;true&lt;/threadCounts&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;threadCounts&gt;true&lt;/threadCounts&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;idleTime&gt;true&lt;/idleTime&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;idleTime&gt;true&lt;/idleTime&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;connectTime&gt;true&lt;/connectTime&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;connectTime&gt;true&lt;/connectTime&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/value&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/value&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/objProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/objProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;filename&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/ResultCollector&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/ResultCollector&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree/&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree/&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/jmeterTestPlan&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/jmeterTestPlan&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;?xml version" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;1.0&quot; encoding</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;?xml version</stringProp>
+              </elementProp>
+              <elementProp name="&lt;jmeterTestPlan version" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;1.2&quot; properties</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;jmeterTestPlan version</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;TestPlan guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlanGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;TestPlan guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.comments&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.functional_mode&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.tearDown_on_shutdown&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.serialize_threadgroups&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.user_defined_variables&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;collectionProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;Arguments.arguments&quot;/&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;collectionProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.user_define_classpath&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/TestPlan&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/TestPlan&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;ThreadGroup guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroupGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;ThreadGroup guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.on_sample_error&quot;&gt;continue&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.main_controller&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;LoopController.continue_forever&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;LoopController.loops&quot;&gt;10&lt;/intProp&gt; &lt;!-- Número de repeticiones --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.num_threads&quot;&gt;5&lt;/intProp&gt; &lt;!-- Usuarios concurrentes --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.ramp_time&quot;&gt;5&lt;/intProp&gt; &lt;!-- Tiempo en segundos para subir usuarios --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;longProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.start_time&quot;&gt;1632432000000&lt;/longProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;longProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;longProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.end_time&quot;&gt;1632435600000&lt;/longProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;longProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.scheduler&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.duration&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.delay&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/ThreadGroup&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/ThreadGroup&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;HTTPSamplerProxy guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HttpTestSampleGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;HTTPSamplerProxy guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPsampler.Arguments&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;collectionProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;Arguments.arguments&quot;/&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;collectionProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.domain&quot;&gt;localhost&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.port&quot;&gt;8080&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.protocol&quot;&gt;http&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.path&quot;&gt;/api/productos&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.method&quot;&gt;GET&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.follow_redirects&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.auto_redirects&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.use_keepalive&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.DO_MULTIPART_POST&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.embedded_url_re&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.connect_timeout&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.response_timeout&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/HTTPSamplerProxy&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/HTTPSamplerProxy&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree/&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree/&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;ResultCollector guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ViewResultsFullVisualizer&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;ResultCollector guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ResultCollector.error_logging&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;objProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;objProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;name&gt;saveConfig&lt;/name&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;name&gt;saveConfig&lt;/name&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;value class" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;SampleSaveConfiguration&quot;&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;value class</stringProp>
+              </elementProp>
+              <elementProp name="&lt;time&gt;true&lt;/time&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;time&gt;true&lt;/time&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;latency&gt;true&lt;/latency&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;latency&gt;true&lt;/latency&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;timestamp&gt;true&lt;/timestamp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;timestamp&gt;true&lt;/timestamp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;success&gt;true&lt;/success&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;success&gt;true&lt;/success&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;label&gt;true&lt;/label&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;label&gt;true&lt;/label&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;code&gt;true&lt;/code&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;code&gt;true&lt;/code&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;message&gt;true&lt;/message&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;message&gt;true&lt;/message&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;threadName&gt;true&lt;/threadName&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;threadName&gt;true&lt;/threadName&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;dataType&gt;true&lt;/dataType&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;dataType&gt;true&lt;/dataType&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;encoding&gt;false&lt;/encoding&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;encoding&gt;false&lt;/encoding&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;assertions&gt;true&lt;/assertions&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;assertions&gt;true&lt;/assertions&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;subresults&gt;true&lt;/subresults&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;subresults&gt;true&lt;/subresults&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseData&gt;false&lt;/responseData&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseData&gt;false&lt;/responseData&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;samplerData&gt;false&lt;/samplerData&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;samplerData&gt;false&lt;/samplerData&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;xml&gt;false&lt;/xml&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;xml&gt;false&lt;/xml&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;fieldNames&gt;true&lt;/fieldNames&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;fieldNames&gt;true&lt;/fieldNames&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseHeaders&gt;false&lt;/responseHeaders&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseHeaders&gt;false&lt;/responseHeaders&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;requestHeaders&gt;false&lt;/requestHeaders&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;requestHeaders&gt;false&lt;/requestHeaders&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseDataOnError&gt;false&lt;/responseDataOnError&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseDataOnError&gt;false&lt;/responseDataOnError&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;saveAssertionResultsFailureMessage&gt;true&lt;/saveAssertionResultsFailureMessage&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;saveAssertionResultsFailureMessage&gt;true&lt;/saveAssertionResultsFailureMessage&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;assertionsResultsToSave&gt;0&lt;/assertionsResultsToSave&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;assertionsResultsToSave&gt;0&lt;/assertionsResultsToSave&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;bytes&gt;true&lt;/bytes&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;bytes&gt;true&lt;/bytes&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;sentBytes&gt;true&lt;/sentBytes&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;sentBytes&gt;true&lt;/sentBytes&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;url&gt;true&lt;/url&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;url&gt;true&lt;/url&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;threadCounts&gt;true&lt;/threadCounts&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;threadCounts&gt;true&lt;/threadCounts&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;idleTime&gt;true&lt;/idleTime&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;idleTime&gt;true&lt;/idleTime&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;connectTime&gt;true&lt;/connectTime&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;connectTime&gt;true&lt;/connectTime&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/value&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/value&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/objProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/objProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;filename&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/ResultCollector&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/ResultCollector&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree/&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree/&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/jmeterTestPlan&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/jmeterTestPlan&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;?xml version" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;1.0&quot; encoding</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;?xml version</stringProp>
+              </elementProp>
+              <elementProp name="&lt;jmeterTestPlan version" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;1.2&quot; properties</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;jmeterTestPlan version</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;TestPlan guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlanGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;TestPlan guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.comments&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.functional_mode&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.tearDown_on_shutdown&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.serialize_threadgroups&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.user_defined_variables&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;collectionProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;Arguments.arguments&quot;/&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;collectionProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;TestPlan.user_define_classpath&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/TestPlan&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/TestPlan&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;ThreadGroup guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroupGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;ThreadGroup guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.on_sample_error&quot;&gt;continue&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.main_controller&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;LoopController.continue_forever&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;LoopController.loops&quot;&gt;10&lt;/intProp&gt; &lt;!-- Número de repeticiones --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.num_threads&quot;&gt;5&lt;/intProp&gt; &lt;!-- Usuarios concurrentes --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;intProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.ramp_time&quot;&gt;5&lt;/intProp&gt; &lt;!-- Tiempo en segundos para subir usuarios --&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;intProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;longProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.start_time&quot;&gt;1632432000000&lt;/longProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;longProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;longProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.end_time&quot;&gt;1632435600000&lt;/longProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;longProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.scheduler&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.duration&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ThreadGroup.delay&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/ThreadGroup&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/ThreadGroup&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;HTTPSamplerProxy guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HttpTestSampleGui&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;HTTPSamplerProxy guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;elementProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPsampler.Arguments&quot; elementType</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;elementProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;collectionProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;Arguments.arguments&quot;/&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;collectionProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/elementProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/elementProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.domain&quot;&gt;localhost&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.port&quot;&gt;8080&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.protocol&quot;&gt;http&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.path&quot;&gt;/api/productos&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.method&quot;&gt;GET&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.follow_redirects&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.auto_redirects&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.use_keepalive&quot;&gt;true&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.DO_MULTIPART_POST&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.embedded_url_re&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.connect_timeout&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;HTTPSampler.response_timeout&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/HTTPSamplerProxy&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/HTTPSamplerProxy&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree/&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree/&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;ResultCollector guiclass" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ViewResultsFullVisualizer&quot; testclass</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;ResultCollector guiclass</stringProp>
+              </elementProp>
+              <elementProp name="&lt;boolProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;ResultCollector.error_logging&quot;&gt;false&lt;/boolProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;boolProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;objProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;objProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;name&gt;saveConfig&lt;/name&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;name&gt;saveConfig&lt;/name&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;value class" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;SampleSaveConfiguration&quot;&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;value class</stringProp>
+              </elementProp>
+              <elementProp name="&lt;time&gt;true&lt;/time&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;time&gt;true&lt;/time&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;latency&gt;true&lt;/latency&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;latency&gt;true&lt;/latency&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;timestamp&gt;true&lt;/timestamp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;timestamp&gt;true&lt;/timestamp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;success&gt;true&lt;/success&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;success&gt;true&lt;/success&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;label&gt;true&lt;/label&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;label&gt;true&lt;/label&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;code&gt;true&lt;/code&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;code&gt;true&lt;/code&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;message&gt;true&lt;/message&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;message&gt;true&lt;/message&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;threadName&gt;true&lt;/threadName&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;threadName&gt;true&lt;/threadName&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;dataType&gt;true&lt;/dataType&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;dataType&gt;true&lt;/dataType&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;encoding&gt;false&lt;/encoding&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;encoding&gt;false&lt;/encoding&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;assertions&gt;true&lt;/assertions&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;assertions&gt;true&lt;/assertions&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;subresults&gt;true&lt;/subresults&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;subresults&gt;true&lt;/subresults&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseData&gt;false&lt;/responseData&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseData&gt;false&lt;/responseData&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;samplerData&gt;false&lt;/samplerData&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;samplerData&gt;false&lt;/samplerData&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;xml&gt;false&lt;/xml&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;xml&gt;false&lt;/xml&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;fieldNames&gt;true&lt;/fieldNames&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;fieldNames&gt;true&lt;/fieldNames&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseHeaders&gt;false&lt;/responseHeaders&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseHeaders&gt;false&lt;/responseHeaders&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;requestHeaders&gt;false&lt;/requestHeaders&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;requestHeaders&gt;false&lt;/requestHeaders&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;responseDataOnError&gt;false&lt;/responseDataOnError&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;responseDataOnError&gt;false&lt;/responseDataOnError&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;saveAssertionResultsFailureMessage&gt;true&lt;/saveAssertionResultsFailureMessage&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;saveAssertionResultsFailureMessage&gt;true&lt;/saveAssertionResultsFailureMessage&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;assertionsResultsToSave&gt;0&lt;/assertionsResultsToSave&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;assertionsResultsToSave&gt;0&lt;/assertionsResultsToSave&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;bytes&gt;true&lt;/bytes&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;bytes&gt;true&lt;/bytes&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;sentBytes&gt;true&lt;/sentBytes&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;sentBytes&gt;true&lt;/sentBytes&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;url&gt;true&lt;/url&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;url&gt;true&lt;/url&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;threadCounts&gt;true&lt;/threadCounts&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;threadCounts&gt;true&lt;/threadCounts&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;idleTime&gt;true&lt;/idleTime&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;idleTime&gt;true&lt;/idleTime&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;connectTime&gt;true&lt;/connectTime&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;connectTime&gt;true&lt;/connectTime&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/value&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/value&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/objProp&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/objProp&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;stringProp name" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&quot;filename&quot;&gt;&lt;/stringProp&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;stringProp name</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/ResultCollector&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/ResultCollector&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;hashTree/&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;hashTree/&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/hashTree&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/hashTree&gt;</stringProp>
+              </elementProp>
+              <elementProp name="&lt;/jmeterTestPlan&gt;" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">&lt;/jmeterTestPlan&gt;</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Ver Resultados" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

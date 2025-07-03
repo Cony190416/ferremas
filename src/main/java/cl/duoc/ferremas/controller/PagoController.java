@@ -61,11 +61,11 @@ public class PagoController {
     // Devuelve la vista para mostrar cuando el pago fue exitoso
     @GetMapping("/pago-exitoso")
     public String mostrarVistaPagoExitoso() {
-        return "pago-exitoso";  // Mapea a archivo HTML en templates
+        return "pago/pago-exitoso";  // Mapea a archivo HTML en templates
     }
 
     // Devuelve la vista para mostrar cuando el pago fue fallido
-    @GetMapping("pago/pago-fallido")
+    @GetMapping("/pago-fallido")
     public String mostrarVistaPagoFallido() {
         return "pago/pago-fallido";  // Mapea a archivo HTML en templates
     }
