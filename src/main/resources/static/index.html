@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferremas - Tu Ferretería de Confianza</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #f1c40f;
+            --accent-color: #148505;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #c62828;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Header Styles */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #333);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--secondary-color) !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .btn-login {
+            background-color: var(--secondary-color);
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), #333);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Currency Selector */
+        .currency-section {
+            background: white;
+            padding: 30px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .currency-selector {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .form-select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(241, 196, 15, 0.25);
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(241, 196, 15, 0.25);
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 50px 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .product-body {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .btn-add-cart {
+            background-color: var(--secondary-color);
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1050;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            background: linear-gradient(135deg, var(--primary-color), #333);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-content {
+            padding: 20px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .btn-quantity {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-quantity:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .cart-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-cart {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-clear {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-checkout {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-cart:hover {
+            transform: translateY(-2px);
+        }
+
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
+            display: none;
+        }
+
+        .cart-overlay.show {
+            display: block;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            z-index: 1060;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: var(--success-color);
+        }
+
+        .notification.error {
+            background-color: var(--danger-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-color), #333);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .footer-text {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-tools me-2"></i>FERREMAS
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos">
+                            <i class="fas fa-box me-1"></i>Productos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="cartIcon">
+                            <i class="fas fa-shopping-cart me-1"></i>Carrito
+                            <span id="cartCount" class="badge bg-warning text-dark ms-1">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-login" href="/login">
+                            <i class="fas fa-sign-in-alt me-1"></i>Iniciar Sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Tu Ferretería de Confianza</h1>
+            <p class="hero-subtitle">Encuentra todo lo que necesitas para tus proyectos de construcción y bricolaje</p>
+            <button class="hero-btn" onclick="document.getElementById('productos').scrollIntoView({behavior: 'smooth'})">
+                <i class="fas fa-shopping-basket me-2"></i>Ver Productos
+            </button>
+        </div>
+    </section>
+
+    <!-- Currency Selector -->
+    <section class="currency-section">
+        <div class="container">
+            <div class="currency-selector">
+                <label for="selectDivisa" class="form-label fw-bold">
+                    <i class="fas fa-dollar-sign me-2"></i>Ver precios en:
+                </label>
+                <select id="selectDivisa" class="form-select">
+                    <option value="CLP" selected>Peso Chileno (CLP)</option>
+                    <option value="USD">Dólar (USD)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <input type="text" id="buscar" class="form-control" placeholder="Buscar producto por nombre...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="productos">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-center mb-4">
+                        <i class="fas fa-boxes me-2"></i>Catálogo de Productos
+                    </h2>
+                </div>
+            </div>
+            
+            <div id="loadingProducts" class="loading">
+                <div class="spinner"></div>
+                <p>Cargando productos...</p>
+            </div>
+            
+            <div id="mensaje-no-encontrado" class="alert alert-warning text-center" style="display: none;">
+                <i class="fas fa-exclamation-triangle me-2"></i>Producto no encontrado
+            </div>
+            
+            <div class="row" id="productGrid">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <span class="cart-title">
+                <i class="fas fa-shopping-cart me-2"></i>Carrito de Compras
+            </span>
+            <button id="cerrarCarrito" class="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div id="cartContent" class="cart-content">
+            <!-- Los productos del carrito se cargarán aquí -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="cart-total" id="cartTotal">Total: $0</div>
+            <div class="cart-actions">
+                <button id="cartVaciar" class="btn-cart btn-clear">
+                    <i class="fas fa-trash me-1"></i>Vaciar
+                </button>
+                <button id="procesarPago" class="btn-cart btn-checkout" onclick="mostrarResumenPago()">
+                    <i class="fas fa-credit-card me-1"></i>Pagar con WebPay
+                </button>
+            </div>
+            <div class="cart-actions" style="margin-top: 10px;">
+                <button class="btn-cart" style="background-color: #17a2b8; color: white; flex: 1;" onclick="window.location.href='/simulacion-pago.html'">
+                    <i class="fas fa-info-circle me-1"></i>Ver Simulación
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+
+    <!-- Notifications -->
+    <div id="cartNotification" class="notification success">
+        <i class="fas fa-check-circle me-2"></i>Producto agregado al carrito
+    </div>
+    
+    <div id="cartError" class="notification error">
+        <i class="fas fa-exclamation-circle me-2"></i>Error al agregar producto
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-tools me-2"></i>FERREMAS
+                </div>
+                <div class="footer-text">
+                    &copy; 2025 Ferremas. John and Constanza. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/index.js"></script>
+</body>
+</html>

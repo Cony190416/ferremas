@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pago Fallido - FERREMAS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .error-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background: #dc3545;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f1c40f;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #dc3545;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .error-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .btn-retry {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-retry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .btn-cart {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="brand-logo">
+            <i class="fas fa-tools me-2"></i>FERREMAS
+        </div>
+        
+        <div class="error-icon">
+            <i class="fas fa-times"></i>
+        </div>
+        
+        <h1>Pago No Completado</h1>
+        <p class="error-message">
+            Lo sentimos, tu transacción no pudo ser procesada.<br>
+            Esto puede deberse a problemas temporales o datos incorrectos.
+        </p>
+        
+        <div class="error-details">
+            <h5><i class="fas fa-exclamation-triangle me-2"></i>Posibles Causas</h5>
+            <ul class="text-start">
+                <li>Problemas de conectividad</li>
+                <li>Datos de tarjeta incorrectos</li>
+                <li>Fondos insuficientes</li>
+                <li>Problemas temporales del sistema</li>
+            </ul>
+        </div>
+        
+        <div class="mt-4">
+            <a href="/" class="btn-home">
+                <i class="fas fa-home me-2"></i>Volver al Inicio
+            </a>
+            <button onclick="window.history.back()" class="btn-retry">
+                <i class="fas fa-redo me-2"></i>Intentar Nuevamente
+            </button>
+            <a href="/" class="btn-cart">
+                <i class="fas fa-shopping-cart me-2"></i>Ver Carrito
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Función para intentar nuevamente
+        function intentarNuevamente() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+    </script>
+</body>
+</html>

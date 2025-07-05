@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Cliente - Ferremas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Test Panel del Cliente - Ferremas</h1>
+    
+    <div class="test-section">
+        <h2>1. Crear Cliente de Prueba</h2>
+        <button onclick="crearClientePrueba()">Crear Cliente de Prueba</button>
+        <div id="resultado-crear"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Acceder al Panel del Cliente</h2>
+        <p>Credenciales de prueba: <strong>cliente@prueba.com / 123456</strong></p>
+        <a href="/login" target="_blank">
+            <button>Ir al Login</button>
+        </a>
+        <p>O ir directamente al panel: <a href="/cliente/home" target="_blank">Panel del Cliente</a></p>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. Probar Endpoints API</h2>
+        <button onclick="probarCheckLogin()">Probar Check Login</button>
+        <button onclick="probarPerfil()">Probar Perfil</button>
+        <button onclick="probarEstadisticas()">Probar Estadísticas</button>
+        <button onclick="probarPedidos()">Probar Pedidos</button>
+        <button onclick="probarHistorial()">Probar Historial</button>
+        <div id="resultado-api"></div>
+    </div>
+
+    <script>
+        async function crearClientePrueba() {
+            try {
+                const resp = await fetch('/api/clientes/crear-prueba', {method: 'POST'});
+                const resultado = await resp.text();
+                document.getElementById('resultado-crear').innerHTML = 
+                    `<p class="success">${resultado}</p>`;
+            } catch (e) {
+                document.getElementById('resultado-crear').innerHTML = 
+                    `<p class="error">Error: ${e.message}</p>`;
+            }
+        }
+
+        async function probarCheckLogin() {
+            try {
+                // Verificar si el usuario logueado es un cliente
+                const resp = await fetch('/api/clientes/check-cliente');
+                if (resp.ok) {
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p><strong>Check Cliente:</strong> Es un cliente logueado</p>`;
+                } else {
+                    const error = await resp.text();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p><strong>Check Cliente:</strong> ${error}</p>`;
+                }
+            } catch (e) {
+                document.getElementById('resultado-api').innerHTML = 
+                    `<p class="error"><strong>Check Cliente Error:</strong> ${e.message}</p>`;
+            }
+        }
+
+        async function probarPerfil() {
+            try {
+                const resp = await fetch('/api/clientes/perfil');
+                if (resp.ok) {
+                    const perfil = await resp.json();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p><strong>Perfil:</strong> ${JSON.stringify(perfil)}</p>`;
+                } else {
+                    const error = await resp.text();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p class="error"><strong>Perfil Error:</strong> ${error}</p>`;
+                }
+            } catch (e) {
+                document.getElementById('resultado-api').innerHTML = 
+                    `<p class="error"><strong>Perfil Error:</strong> ${e.message}</p>`;
+            }
+        }
+
+        async function probarEstadisticas() {
+            try {
+                const resp = await fetch('/api/clientes/estadisticas');
+                if (resp.ok) {
+                    const stats = await resp.json();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p><strong>Estadísticas:</strong> ${JSON.stringify(stats)}</p>`;
+                } else {
+                    const error = await resp.text();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p class="error"><strong>Estadísticas Error:</strong> ${error}</p>`;
+                }
+            } catch (e) {
+                document.getElementById('resultado-api').innerHTML = 
+                    `<p class="error"><strong>Estadísticas Error:</strong> ${e.message}</p>`;
+            }
+        }
+
+        async function probarPedidos() {
+            try {
+                const resp = await fetch('/api/clientes/pedidos');
+                if (resp.ok) {
+                    const pedidos = await resp.json();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p><strong>Pedidos:</strong> ${JSON.stringify(pedidos)}</p>`;
+                } else {
+                    const error = await resp.text();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p class="error"><strong>Pedidos Error:</strong> ${error}</p>`;
+                }
+            } catch (e) {
+                document.getElementById('resultado-api').innerHTML = 
+                    `<p class="error"><strong>Pedidos Error:</strong> ${e.message}</p>`;
+            }
+        }
+
+        async function probarHistorial() {
+            try {
+                const resp = await fetch('/api/clientes/historial');
+                if (resp.ok) {
+                    const historial = await resp.json();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p><strong>Historial:</strong> ${JSON.stringify(historial)}</p>`;
+                } else {
+                    const error = await resp.text();
+                    document.getElementById('resultado-api').innerHTML = 
+                        `<p class="error"><strong>Historial Error:</strong> ${error}</p>`;
+                }
+            } catch (e) {
+                document.getElementById('resultado-api').innerHTML = 
+                    `<p class="error"><strong>Historial Error:</strong> ${e.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html> 

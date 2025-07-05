@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Pago - Ferremas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .content {
+            padding: 40px;
+        }
+        .step {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .step h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        .success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .info {
+            border-left-color: #17a2b8;
+            background: #d1ecf1;
+        }
+        .warning {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .code {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 Simulación de Pago WebPay</h1>
+            <p>Flujo completo de integración con Transbank</p>
+        </div>
+        
+        <div class="content">
+            <div class="step success">
+                <h3>✅ Paso 1: Carrito Procesado</h3>
+                <p>El frontend envió correctamente los productos del carrito al backend.</p>
+                <div class="code">
+POST /api/pago/iniciar-carrito
+{
+  "carrito": [
+    {"productoId": 1, "cantidad": 2, "precio": 15000},
+    {"productoId": 3, "cantidad": 1, "precio": 25000}
+  ]
+}
+                </div>
+            </div>
+
+            <div class="step success">
+                <h3>✅ Paso 2: Orden Creada</h3>
+                <p>El backend procesó la orden y la guardó en la base de datos.</p>
+                <div class="code">
+Orden ID: 12345
+Total: $55,000
+Estado: PENDIENTE
+Fecha: 2025-07-04 19:58:12
+                </div>
+            </div>
+
+            <div class="step info">
+                <h3>🔄 Paso 3: Integración WebPay</h3>
+                <p>En un escenario real, aquí se haría la llamada a la API de Transbank:</p>
+                <div class="code">
+POST https://webpay3gint.transbank.cl/rswebpaytransaction/api/webpay/v1.0/transactions
+{
+  "buy_order": "123456789",
+  "session_id": "session_123",
+  "amount": 55000,
+  "return_url": "https://tu-sitio.com/pago/confirmar"
+}
+                </div>
+            </div>
+
+            <div class="step warning">
+                <h3>⚠️ Paso 4: Respuesta de WebPay</h3>
+                <p>Transbank devolvería un token real y la URL de pago:</p>
+                <div class="code">
+{
+  "token": "01ab23cd45ef67gh89ij01kl23mn45op67qr89st01uv23wx45yz67ab89cd",
+  "url": "https://webpay3gint.transbank.cl/filtroUnificado/initTransaction"
+}
+                </div>
+            </div>
+
+            <div class="step info">
+                <h3>🌐 Paso 5: Redirección al Cliente</h3>
+                <p>El frontend redirige al usuario a la página de pago de Transbank:</p>
+                <div class="code">
+window.location.href = "https://webpay3gint.transbank.cl/filtroUnificado/initTransaction?token_ws=01ab23cd45ef67gh89ij01kl23mn45op67qr89st01uv23wx45yz67ab89cd"
+                </div>
+            </div>
+
+            <div class="step warning">
+                <h3>💳 Paso 6: Página de Pago</h3>
+                <p>El usuario ve la página oficial de Transbank para ingresar sus datos de pago.</p>
+                <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                    <h4>🏦 Transbank - Página de Pago</h4>
+                    <p>Aquí el usuario ingresaría:</p>
+                    <ul style="text-align: left; display: inline-block;">
+                        <li>Número de tarjeta</li>
+                        <li>Fecha de vencimiento</li>
+                        <li>Código de seguridad</li>
+                        <li>RUT del titular</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step success">
+                <h3>✅ Paso 7: Confirmación</h3>
+                <p>Después del pago, Transbank redirige de vuelta a tu sitio web con el resultado.</p>
+                <div class="code">
+GET /pago/confirmar?token_ws=01ab23cd45ef67gh89ij01kl23mn45op67qr89st01uv23wx45yz67ab89cd
+                </div>
+            </div>
+
+            <hr style="margin: 40px 0; border: none; border-top: 2px solid #e9ecef;">
+
+            <div class="step">
+                <h3>🎯 Estado Actual del Sistema</h3>
+                <p><span class="status success">✅ Funcionando</span> El flujo está implementado correctamente.</p>
+                <p><span class="status warning">⚠️ Simulado</span> WebPay está en modo simulación.</p>
+                <p><span class="status info">ℹ️ Listo para Producción</span> Solo necesitas credenciales reales de Transbank.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" onclick="window.location.href='/'">🏠 Volver al Inicio</button>
+                <button class="btn btn-secondary" onclick="window.location.href='/carrito'">🛒 Ver Carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simular el flujo de pago
+        function simularPago() {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.opacity = '0.7';
+                    setTimeout(() => {
+                        step.style.opacity = '1';
+                    }, 500);
+                }, index * 1000);
+            });
+        }
+
+        // Ejecutar simulación al cargar la página
+        window.onload = function() {
+            setTimeout(simularPago, 1000);
+        };
+    </script>
+</body>
+</html> 

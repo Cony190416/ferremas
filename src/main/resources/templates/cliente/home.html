@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Cliente - Ferremas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #f1c40f;
+            --accent-color: #148505;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #c62828;
+        }
+        
+        body {
+            background-color: #ecf0f1;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .sidebar {
+            background: linear-gradient(135deg, var(--primary-color), #333);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            transition: all 0.3s;
+            border-radius: 8px;
+            margin: 2px 0;
+        }
+        
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            color: var(--primary-color);
+            background-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .main-content {
+            padding: 20px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, var(--secondary-color), #f39c12);
+            color: var(--primary-color);
+        }
+        
+        .stat-card.success {
+            background: linear-gradient(135deg, var(--accent-color), #27ae60);
+            color: white;
+        }
+        
+        .stat-card.warning {
+            background: linear-gradient(135deg, var(--warning-color), #e67e22);
+            color: white;
+        }
+        
+        .stat-card.danger {
+            background: linear-gradient(135deg, var(--danger-color), #e74c3c);
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .btn-success {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .status-pendiente { background-color: #fff3cd; color: #856404; }
+        .status-procesando { background-color: #cce5ff; color: #004085; }
+        .status-enviado { background-color: #d4edda; color: #155724; }
+        .status-entregado { background-color: #d1ecf1; color: #0c5460; }
+        .status-cancelado { background-color: #f8d7da; color: #721c24; }
+        
+        .search-box {
+            border-radius: 25px;
+            border: 2px solid #e9ecef;
+            padding: 10px 20px;
+        }
+        
+        .search-box:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(241, 196, 15, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar p-0">
+                <div class="p-4">
+                    <h4 class="text-center mb-4">
+                        <i class="fas fa-store"></i> Ferremas
+                    </h4>
+                    <h6 class="text-center mb-4 text-light">Panel Cliente</h6>
+                </div>
+                
+                <nav class="nav flex-column px-3">
+                    <a class="nav-link active" href="#dashboard" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                    </a>
+                    <a class="nav-link" href="#perfil" data-section="perfil">
+                        <i class="fas fa-user me-2"></i> Mi Perfil
+                    </a>
+                    <a class="nav-link" href="#pedidos" data-section="pedidos">
+                        <i class="fas fa-shopping-bag me-2"></i> Mis Pedidos
+                    </a>
+                    <a class="nav-link" href="#historial" data-section="historial">
+                        <i class="fas fa-history me-2"></i> Historial
+                    </a>
+                    <a class="nav-link" href="#carrito" data-section="carrito">
+                        <i class="fas fa-shopping-cart me-2"></i> Carrito
+                    </a>
+                    <a class="nav-link" href="#favoritos" data-section="favoritos">
+                        <i class="fas fa-heart me-2"></i> Favoritos
+                    </a>
+                    <hr class="text-light">
+                    <a class="nav-link" href="/logout">
+                        <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
+                    </a>
+                </nav>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard" class="content-section">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                        <span class="text-muted">Bienvenido, <span id="cliente-nombre">Cliente</span></span>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 mb-3">
+                            <div class="card stat-card">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-shopping-bag fa-2x mb-2"></i>
+                                    <h4 id="total-pedidos">0</h4>
+                                    <p class="mb-0">Total Pedidos</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card stat-card success">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-check-circle fa-2x mb-2"></i>
+                                    <h4 id="pedidos-entregados">0</h4>
+                                    <p class="mb-0">Entregados</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card stat-card warning">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-clock fa-2x mb-2"></i>
+                                    <h4 id="pedidos-pendientes">0</h4>
+                                    <p class="mb-0">Pendientes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card stat-card danger">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-dollar-sign fa-2x mb-2"></i>
+                                    <h4 id="total-gastado">$0</h4>
+                                    <p class="mb-0">Total Gastado</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Orders & Cart -->
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-list"></i> Pedidos Recientes</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Fecha</th>
+                                                    <th>Total</th>
+                                                    <th>Estado</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="pedidos-recientes">
+                                                <tr>
+                                                    <td colspan="5" class="text-center text-muted">Cargando pedidos...</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-shopping-cart"></i> Carrito Actual</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div id="carrito-resumen">
+                                        <p class="text-muted">Cargando carrito...</p>
+                                    </div>
+                                    <hr>
+                                    <button class="btn btn-primary w-100" onclick="irACarrito()">
+                                        <i class="fas fa-shopping-cart"></i> Ver Carrito
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Perfil Section -->
+                <div id="perfil" class="content-section" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2><i class="fas fa-user"></i> Mi Perfil</h2>
+                        <button class="btn btn-primary" onclick="editarPerfil()">
+                            <i class="fas fa-edit"></i> Editar Perfil
+                        </button>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-info-circle"></i> Información Personal</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Nombre:</strong> <span id="perfil-nombre">Cargando...</span></p>
+                                    <p><strong>Email:</strong> <span id="perfil-email">Cargando...</span></p>
+                                    <p><strong>Teléfono:</strong> <span id="perfil-telefono">Cargando...</span></p>
+                                    <p><strong>Dirección:</strong> <span id="perfil-direccion">Cargando...</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-chart-bar"></i> Estadísticas</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Total de pedidos:</strong> <span id="perfil-total-pedidos">0</span></p>
+                                    <p><strong>Pedidos entregados:</strong> <span id="perfil-pedidos-entregados">0</span></p>
+                                    <p><strong>Total gastado:</strong> <span id="perfil-total-gastado">$0</span></p>
+                                    <p><strong>Cliente desde:</strong> <span id="perfil-fecha-registro">Cargando...</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pedidos Section -->
+                <div id="pedidos" class="content-section" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2><i class="fas fa-shopping-bag"></i> Mis Pedidos</h2>
+                        <button class="btn btn-primary" onclick="exportarPedidos()">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Pedido</th>
+                                            <th>Fecha</th>
+                                            <th>Productos</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla-pedidos">
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted">Cargando pedidos...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Historial Section -->
+                <div id="historial" class="content-section" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2><i class="fas fa-history"></i> Historial de Compras</h2>
+                        <button class="btn btn-primary" onclick="exportarHistorial()">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Pedido</th>
+                                            <th>Fecha</th>
+                                            <th>Productos</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                            <th>Factura</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla-historial">
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted">Cargando historial...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Carrito Section -->
+                <div id="carrito" class="content-section" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2><i class="fas fa-shopping-cart"></i> Mi Carrito</h2>
+                        <div>
+                            <button class="btn btn-warning me-2" onclick="vaciarCarrito()">
+                                <i class="fas fa-trash"></i> Vaciar
+                            </button>
+                            <button class="btn btn-success" onclick="realizarPedido()">
+                                <i class="fas fa-check"></i> Realizar Pedido
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="carrito-detalle">
+                                <p class="text-muted">Cargando carrito...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Favoritos Section -->
+                <div id="favoritos" class="content-section" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2><i class="fas fa-heart"></i> Mis Favoritos</h2>
+                        <button class="btn btn-primary" onclick="irATienda()">
+                            <i class="fas fa-store"></i> Ir a Tienda
+                        </button>
+                    </div>
+                    
+                    <div class="row" id="favoritos-grid">
+                        <div class="col-12">
+                            <p class="text-muted">Cargando favoritos...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Order Detail Modal -->
+    <div class="modal fade" id="orderDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalle del Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="order-detail-content">
+                    <!-- Content will be loaded here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" onclick="descargarFactura()">Descargar Factura</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    showSection(section);
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        function showSection(sectionName) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionName).style.display = 'block';
+            
+            // Load data for the section
+            switch(sectionName) {
+                case 'dashboard':
+                    loadDashboardData();
+                    break;
+                case 'perfil':
+                    loadPerfil();
+                    break;
+                case 'pedidos':
+                    loadPedidos();
+                    break;
+                case 'historial':
+                    loadHistorial();
+                    break;
+                case 'carrito':
+                    loadCarrito();
+                    break;
+                case 'favoritos':
+                    loadFavoritos();
+                    break;
+            }
+        }
+
+        // Dashboard Functions
+        function loadDashboardData() {
+            // Load profile data
+            loadPerfilData();
+            
+            // Load recent orders
+            loadPedidosRecientes();
+            
+            // Load cart summary
+            loadCarritoResumen();
+        }
+
+        async function loadPerfilData() {
+            try {
+                const response = await fetch('/api/clientes/perfil');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('cliente-nombre').textContent = data.nombre;
+                    document.getElementById('total-pedidos').textContent = data.totalPedidos || 0;
+                    document.getElementById('pedidos-entregados').textContent = data.pedidosEntregados || 0;
+                    document.getElementById('pedidos-pendientes').textContent = data.pedidosPendientes || 0;
+                    document.getElementById('total-gastado').textContent = `$${data.totalGastado || 0}`;
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        function loadPedidosRecientes() {
+            const tbody = document.getElementById('pedidos-recientes');
+            tbody.innerHTML = `
+                <tr>
+                    <td>#001</td>
+                    <td>2024-01-15</td>
+                    <td>$45,000</td>
+                    <td><span class="status-badge status-pendiente">Pendiente</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary" onclick="verPedido(1)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#002</td>
+                    <td>2024-01-10</td>
+                    <td>$78,500</td>
+                    <td><span class="status-badge status-entregado">Entregado</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary" onclick="verPedido(2)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function loadCarritoResumen() {
+            document.getElementById('carrito-resumen').innerHTML = `
+                <p><strong>Productos:</strong> 3</p>
+                <p><strong>Total:</strong> $45,000</p>
+            `;
+        }
+
+        // Perfil Functions
+        function loadPerfil() {
+            // Load detailed profile data
+            document.getElementById('perfil-nombre').textContent = 'Juan Pérez';
+            document.getElementById('perfil-email').textContent = 'juan@email.com';
+            document.getElementById('perfil-telefono').textContent = '+56 9 1234 5678';
+            document.getElementById('perfil-direccion').textContent = 'Av. Principal 123, Santiago';
+            document.getElementById('perfil-total-pedidos').textContent = '5';
+            document.getElementById('perfil-pedidos-entregados').textContent = '3';
+            document.getElementById('perfil-total-gastado').textContent = '$125,000';
+            document.getElementById('perfil-fecha-registro').textContent = 'Enero 2024';
+        }
+
+        function editarPerfil() {
+            alert('Funcionalidad para editar perfil');
+        }
+
+        // Pedidos Functions
+        function loadPedidos() {
+            const tbody = document.getElementById('tabla-pedidos');
+            tbody.innerHTML = `
+                <tr>
+                    <td>#001</td>
+                    <td>2024-01-15</td>
+                    <td>3 productos</td>
+                    <td>$45,000</td>
+                    <td><span class="status-badge status-pendiente">Pendiente</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary" onclick="verPedido(1)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function verPedido(id) {
+            document.getElementById('order-detail-content').innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Información del Pedido</h6>
+                        <p><strong>ID:</strong> #${id.toString().padStart(3, '0')}</p>
+                        <p><strong>Fecha:</strong> 2024-01-15 10:30</p>
+                        <p><strong>Estado:</strong> <span class="status-badge status-pendiente">Pendiente</span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Productos</h6>
+                        <ul>
+                            <li>Martillo de Bola 20 oz - 2x $15,000</li>
+                            <li>Destornillador Cruz - 1x $15,000</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="text-end">
+                    <h5>Total: $45,000</h5>
+                </div>
+            `;
+            
+            new bootstrap.Modal(document.getElementById('orderDetailModal')).show();
+        }
+
+        function exportarPedidos() {
+            alert('Exportando pedidos...');
+        }
+
+        // Historial Functions
+        function loadHistorial() {
+            const tbody = document.getElementById('tabla-historial');
+            tbody.innerHTML = `
+                <tr>
+                    <td>#002</td>
+                    <td>2024-01-10</td>
+                    <td>5 productos</td>
+                    <td>$78,500</td>
+                    <td><span class="status-badge status-entregado">Entregado</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-success" onclick="descargarFactura(2)">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function exportarHistorial() {
+            alert('Exportando historial...');
+        }
+
+        function descargarFactura(id) {
+            alert(`Descargando factura del pedido #${id}`);
+        }
+
+        // Carrito Functions
+        function loadCarrito() {
+            document.getElementById('carrito-detalle').innerHTML = `
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Martillo de Bola 20 oz</td>
+                                <td>2</td>
+                                <td>$15,000</td>
+                                <td>$30,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="removerDelCarrito(1)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Destornillador Cruz</td>
+                                <td>1</td>
+                                <td>$15,000</td>
+                                <td>$15,000</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="removerDelCarrito(2)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-end">
+                    <h5>Total: $45,000</h5>
+                </div>
+            `;
+        }
+
+        function vaciarCarrito() {
+            if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
+                alert('Carrito vaciado');
+                loadCarrito();
+            }
+        }
+
+        function realizarPedido() {
+            alert('Funcionalidad para realizar pedido');
+        }
+
+        function removerDelCarrito(id) {
+            alert(`Removiendo producto ${id} del carrito`);
+        }
+
+        // Favoritos Functions
+        function loadFavoritos() {
+            document.getElementById('favoritos-grid').innerHTML = `
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-heart text-danger fa-2x mb-2"></i>
+                            <h6>Martillo de Bola</h6>
+                            <p class="text-muted">$15,000</p>
+                            <button class="btn btn-sm btn-primary">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function irATienda() {
+            window.location.href = '/';
+        }
+
+        function irACarrito() {
+            showSection('carrito');
+        }
+
+        // Initialize dashboard on load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+        });
+    </script>
+</body>
+</html> 
